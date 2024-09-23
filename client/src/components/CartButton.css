@@ -1,4 +1,5 @@
 button {
 	border: 1px solid black;
 	background-color: rgb(247, 255, 234);
+	cursor: pointer;
 }
