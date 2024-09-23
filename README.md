@@ -1,5 +1,7 @@
 # What The Duck — Online Rubber Duck Store
 
+![Screenshot: What The Duck](public/screenshot.png)
+
 ## About the Project
 
 _What The Duck_ is a lightweight, React-based e-commerce platform designed as part of a school project. It showcases modern web development practices and integrates with Stripe for secure payment processing.
