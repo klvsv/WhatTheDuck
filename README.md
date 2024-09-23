@@ -1,6 +1,6 @@
 # What The Duck — Online Rubber Duck Store
 
-![Screenshot: What The Duck](public/screenshot.png)
+![Screenshot: What The Duck](client/public/screenshot.png)
 
 ## About the Project
 
