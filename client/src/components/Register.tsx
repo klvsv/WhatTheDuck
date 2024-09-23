@@ -20,7 +20,7 @@ export const Register: React.FC<RegisterProps> = ({ handleRegister }) => {
 			setEmail("");
 			setPassword("");
 		} catch (err) {
-			setError(err instanceof Error ? err.message : "An unexpected error occurred");
+			setError(err instanceof Error ? err.message : "You must provide a valid email and a password with atleast 6 characters");
 		}
 	};
 

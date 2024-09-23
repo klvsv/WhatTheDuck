@@ -25,7 +25,6 @@ async function readJSONFile(filename) {
 	}
 }
 
-// Middleware
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(
 	cookieSession({
@@ -35,7 +34,6 @@ app.use(
 	})
 );
 
-// Use JSON parsing for all routes except /webhook
 app.use((req, res, next) => {
 	if (req.originalUrl === "/webhook") {
 		next();
@@ -45,9 +43,8 @@ app.use((req, res, next) => {
 });
 
 console.log("Is Stripe key loaded?:", process.env.STRIPE_SECRET_KEY ? "Yes" : "No");
-console.log("Webhook secret loaded:", process.env.STRIPE_WEBHOOK_SECRET ? "Yes" : "No");
+console.log("Is Webhook secret loaded?:", process.env.STRIPE_WEBHOOK_SECRET ? "Yes" : "No");
 
-// User authentication middleware
 const authenticateUser = (req, res, next) => {
 	if (req.session.userId) {
 		next();
@@ -172,7 +169,6 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
 		return res.status(400).send(`Webhook Error: ${err.message}`);
 	}
 
-	// Handle the event
 	switch (event.type) {
 		case "checkout.session.completed":
 			const session = event.data.object;
@@ -183,7 +179,6 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
 			console.log(`Unhandled event type ${event.type}`);
 	}
 
-	// Return a 200 response to acknowledge receipt of the event
 	res.send();
 });
 
@@ -221,30 +216,15 @@ async function fulfillOrder(session) {
 	}
 }
 
-// Test write route REMOVE THIS WHEN DONE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-app.get("/test-write", async (req, res) => {
-	try {
-		await fs.writeFile("test.txt", "This is a test");
-		console.log("Test file written successfully");
-		res.send("File written successfully");
-	} catch (error) {
-		console.error("Error writing file:", error);
-		res.status(500).send("Error writing file");
-	}
-}); // REMOVE WHEN DONE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// Error handling middleware
 app.use((err, req, res, next) => {
 	console.error(err.stack);
 	res.status(500).json({ error: "An unexpected error occurred" });
 });
 
-// 404 Not Found handler
 app.use((req, res) => {
 	res.status(404).json({ error: "Not Found" });
 });
 
-// Helper function to ensure JSON files exist
 async function ensureFileExists(filename, defaultContent = "[]") {
 	try {
 		await fs.access(filename);
@@ -258,12 +238,12 @@ async function ensureFileExists(filename, defaultContent = "[]") {
 	}
 }
 
-// Ensure necessary files exist when starting the server
+// make sure necessary files exist when starting the server
 (async () => {
 	try {
 		await ensureFileExists("users.json");
 		await ensureFileExists("orders.json");
-		console.log("Initialization complete. Server is ready.");
+		console.log("Server is ready.");
 	} catch (error) {
 		console.error("Error during initialization:", error);
 		process.exit(1);
