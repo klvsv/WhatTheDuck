@@ -1,5 +1,5 @@
 .App {
-  margin: 2rem 2rem;
+	margin: 2rem 2rem;
 }
 
 .disabled-button {
@@ -27,4 +27,10 @@
 .disabled-button:hover .tooltip {
 	visibility: visible;
 	opacity: 1;
+}
+
+input {
+	padding: 0.8rem;
+	margin-right: 0.8rem;
+	border-radius: 0.6rem;
 }

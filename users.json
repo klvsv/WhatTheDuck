@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "email": "hej@da.se",
+    "password": "$2b$10$ko/BNgfi6RWNd6zHEhBtKODzI/pOgof.S5O6kHubDYo8KfbJLIJxq",
+    "stripeCustomerId": "cus_QtpYievqXFBM6I"
+  }
+]

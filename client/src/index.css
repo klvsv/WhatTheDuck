@@ -116,16 +116,19 @@ button {
 	border: none;
 	border-radius: 0.8rem;
 	padding: 0.6rem;
+	cursor: pointer;
 }
 .logout-btn {
 	border: 2px dashed black;
 	border-radius: 0.8rem;
 	background-color: rgb(255, 136, 115);
+	cursor: pointer;
 }
 
 .addtocart-btn {
 	border: 1px solid black;
 	background-color: #f7ecda;
+	cursor: pointer;
 }
 
 .description-card {

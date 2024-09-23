@@ -20,30 +20,32 @@ export const Register: React.FC<RegisterProps> = ({ handleRegister }) => {
 			setEmail("");
 			setPassword("");
 		} catch (err) {
-			setError(err instanceof Error ? err.message : "You must provide a valid email and a password with atleast 6 characters");
+			setError(err instanceof Error ? err.message : "An unexpected error occurred");
 		}
 	};
 
 	return (
 		<div>
 			<h1>Register</h1>
-			<form onSubmit={onSubmit}>
-				<input
-					type="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					required
-					placeholder="Email"
-				/>
-				<input
-					type="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-					placeholder="Password"
-				/>
-				<button type="submit">Register</button>
-			</form>
+			<div>
+				<form onSubmit={onSubmit}>
+					<input
+						type="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						required
+						placeholder="Email"
+					/>
+					<input
+						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						required
+						placeholder="Password"
+					/>
+					<button type="submit">Register</button>
+				</form>
+			</div>
 			{error && <p style={{ color: "red" }}>{error}</p>}
 			{successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
 		</div>

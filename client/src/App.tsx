@@ -131,7 +131,7 @@ const App: React.FC = () => {
 			return "Registration successful. Please log in.";
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response) {
-				throw new Error(error.response.data.error || "An error occurred during registration");
+				throw new Error(error.response.data.error || "Please register a valid email adress and a password with atleast 6 characters.");
 			}
 			throw new Error("An unexpected error occurred");
 		}
